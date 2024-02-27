@@ -1,27 +1,27 @@
 # Machine Learning Framework Package Documentation
 
 
-Dokumentation über die Funktionen und den Umfang des selbst erstellten Machine Learning Frameworks 'uenn'.
+Documentation about the functions and the scope of the machine learning framework 'uenn' created by Uli Binder and Eric Dienhart.
 
 **How to install**
 
-Öffne eine Console und führe folgende Schritte aus:
-1. Wechsle mit `cd` in das Verzeichnis des Packages
-2. Gebe den Befehl `python setup.py install` ein
+Follow these steps in a console of your choice:
+1. Change with the `cd` command into the packages' repository
+2. Enter the command `python setup.py install`
 
 
 
 
 
 
-(Im File `main.py` ist der funktionelle Ablauf des Packages einsehbar.)
+(The functional sequence of creating and training a neural network with the package can be viewed in the file `main.py`.)
 
 
 
-<details><summary>Komponenten des 'uenn' Frameworks:</summary>
+<details><summary>Components of the 'uenn' framework:</summary>
 
 
-1. Neuronales Netzwerk
+1. Neural Network
 
 
 2. Cost Functions
@@ -40,8 +40,7 @@ Dokumentation über die Funktionen und den Umfang des selbst erstellten Machine 
 
 4. PCA
 
-    - Eigenvektormatrix
-
+    - Eigenvector Matrix
 
 
 5. Activation Methods
@@ -54,32 +53,35 @@ Dokumentation über die Funktionen und den Umfang des selbst erstellten Machine 
 
     - Leakyrelu
 
+
 6. DataTools
 
     - Import
 
-    - Standard-Skalierung
+    - Standard Scaling
 
-    - Normal-Skalierung
+    - Normal Scaling
 
-    - Datenset Splittung
+    - Datenset Splitting
+
 
 7. Performance
 
-    - F1 Wert Berechner
+    - F1 Value Calculator
 
 
 8. Plotter
 
     - Error-Plots
 
-    - F1-Wert-Plot
+    - F1-Value-Plot
+
 
 9. Saver
 
-    - Plot Speicherung
+    - Saving Plots
 
-    - Thetas Speicherung
+    - Saving Thetas
 
 
 </details>
@@ -87,165 +89,165 @@ Dokumentation über die Funktionen und den Umfang des selbst erstellten Machine 
 
 
 
-<details><summary>Methoden und Funktionen</summary>
+<details><summary>Methods and Functions</summary>
 
 
 **uenn.DataTools.importing(path, ground_truth='ground_truth', mnist=True)**
 
-Um das Framework nutzen zu können, müssen zuerst Daten eingelesen werden.
+To be able to use the framework, data must first be read in.
 
         path : str
 
-            Der Pfad von dem die Daten eingelesen werden sollen muss angegeben werden.
+            The path from which the data is to be read in must be specified.
 
         ground_truth : str, default 'ground_truth'
 
-            Name der Spalte, in welcher die Ground Truth Daten vorliegen.
+            Name of the column containing the ground truth data.
 
         mnist : bool, default False
 
-            Der Scikit-learn Datensatz 'MNIST' wird automatisch eingelesen, wenn die Variable auf True gesetzt wird.
+            The scikit-learn data set 'MNIST' is automatically read in if the variable is set to True.
 
 **uenn.DataTools.scaling(x, scaler='standardized')**
 
-Die Funktion bietet die Skalierung der Daten an. Dies wird vor der Berechnung dringend empfohlen.
+The function offers to scale the data. This is strongly recommended before the calculation.
 
         x : object
 
-            Zu skalierender Datensatz (ohne der Ground Truth).
+            Data set to be scaled (without the ground truth).
 
         scaler : {'standardized', 'normalized'}, default 'standardized'
 
-            Angabe zur Art der Skalierung.
+            Specification of the type of scaling.
 
 **uenn.DataTools.preparing(x, y, ratio)**
 
-Zur Überprüfung der Ergebnisse muss ein bestimmter Anteil der Daten im vorhinein abgetrennt werden.
+To check the results, a certain proportion of the data must be separated in advance.
 
         x : object
 
-            Datasatz der Werte für das Training.
+            Data set of the values for the training.
 
         y : object
 
-            Datasatz der Ground Truth.
+            Data set of the ground truth.
 
         ratio : float, default 0.7
 
-            Angabe zum Anteil der Daten die in den Traingssatz kommen. Angabe in 0. Werten.
+            Specifies the proportion of data that is included in the training set. Specification in decimal / 0. values.
 
 **uenn.PCA.pca(x, cutoff=0.99, path=False)**
 
-Die Principal Component Analysis kann zur Aufbereitung der Daten genutzt werden.
+The Principal Component Analysis can be used to prepare the data.
 
         x : object
         
-            Datasatz für das Training.
+            Data set for the training.
 
         cutoff : float, default 0.99
 
-            Bestimmt den Wert der Componenten, zu welchem Anteil sie noch beitragen.
+            Determines the value of the components to which they still contribute.
 
         path : str
 
-            Angabe zum Pfad an dem die Eigenvektormatrix abgespeichert werden sollen.
+            Specifies the path where the eigenvector matrix is to be saved.
 
 **uenn.Neuralnet.NN(input_size, layer_number, layer_size, output_size, cost_function='CCE')**
 
-Funktion zum Erstellung des Neuronalen Netzwerks.
+Function for creating the neural network.
 
         input_size : int
 
-            Angabe der Menge an verwendeten Features.
+            Specifies the number of features used.
 
         layer_number : int
 
-            Angabe zur Anzahl der Hidden Layers.
+            Specifies the number of hidden layers.
 
         layer_size : int
 
-            Angabe zur Anzahl der Neuronen im Hidden Layer.
+            Specifies the number of neurons in the hidden layer.
 
         output_size : int 
 
-            Angabe zur Anzahl der gewünschten Ergebnisskategorien.
+            Specifies the number of desired result categories.
 
         cost_function :  {'CCE', 'MSE'}, default 'CCE'
 
-            Hier kann die Cost_function ausgewählt werden.
+            The cost_function can be selected here.
 
 
 **uenn.Neuralnet.train(x, y, epochs, alpha, activation_function='sigmoid', batch=False, beta=False)**
 
-Mit dieser Funktion werden die (Hyper-) Parameter zur Berechnung der Daten eingegeben.
+This function is used to enter the (hyper) parameters for calculating the data.
 
         x : object
 
-            Datasatz für das Training.
+            Data set for the training.
 
         y : object
 
-            Datasatz für die Validation.
+            Data set for the validation.
 
         epochs : int
         
-            Anzahl an Epochen zum Trainieren.
+            Number of epochs for training.
 
         alpha : float
 
-            Alpha wird zur Berechnung im Training benötigt.
+            Alpha is required for calculation in training.
 
         activation_function : {'sigmoid', 'leakyrelu', 'relu', 'tanh'}, default 'sigmoid'
 
-            Hier kann die Aktivierungsfunktion ausgewählt werden.
+            The activation function can be selected here.
 
         batch : int
 
-            Angabe zur Größe der Batch-size.
+            Specifies the size of a batch.
 
         beta : float, default 0.75
 
-            Angabe zum Beta-Gewicht, wenn Momentum genutzt werden soll.
+            Specifies the beta weight if momentum is to be used.
 
 **uenn.Saver.save_plots(plot, path=os.getcwd(), name='plot', bbox_inches='tight', dpi=150)**
 
-Mit dieser Funktion können Plots erstellt und für später gespeichert werden.
+This function can be used to create plots and save them for later.
 
         plot : object
 
-            Daten welche im Plot abgebildet werden sollen.
+            Data to be displayed in the plot.
 
         path : str, default os.getcwd()
 
-            Angaben zum Pfad an dem die Plots abgespeichert werden sollen.
+            Details of the path where the plots are to be saved.
 
         name : str, default 'plot'
 
-            Angabe zum Namen unter dem der Plot abgespeichert werden soll.
+            Specifies the name under which the plot is to be saved.
 
         bbox_inches : str, default 'tight'
 
-            Ermöglicht eine besser Anordnung des Plots auf dem abzuspeichernden Bild.
+            Enables a better arrangement of the plot on the image to be saved.
 
         dpi : int, default 150
 
-            Angabe zur Auflösung des Plots.
+            Specifies the resolution of the plot.
 
 **uenn.Saver.save_thetas(thetas, path=os.getcwd(), name='thetas')**
 
-Mit dieser Funktion können die erzeugten Thetas abgespeichert werden.
+This function can be used to save the generated thetas.
 
         thetas : object
 
-            Thetas welche aus dem Netzwerk berechnet wurden.
+            Thetas which were calculated from the network.
 
         path : str, default os.getcwd()
 
-            Angabe zum Pfad an dem die Thetas abgespeichert werden sollen.
+            Specifies the path where the thetas are to be saved.
 
         name : str, default 'thetas'
 
-            Angabe zum Namen unter dem die Thetas abgespeichert werden sollen.
+            Specifies the name under which the thetas are to be saved.
 
 
 </details>
